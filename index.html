@@ -108,24 +108,12 @@
 				xhr.open("GET", "articles.xml", true);
 				xhr.send(null);
 			}
-			function render() {
-				document.getElementById("init").style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-				document.getElementById("intro").style.zIndex = "auto";
-				document.getElementById("static").style.display = "none";
-				document.getElementById("body").style.overflow = "scroll";
-			}
-			function read() {
-				page();
-				setTimeout(render, 16000);
-			}
 		</script>
 		<link rel="stylesheet" href="style/design.css"/>
 		<link rel="stylesheet" href="style/animation.css"/>
 	</head>
-	<body id="body" onload="read()">
-		<header id="header" style="background-image:url('style/theme.jpg');"><div id="init"><h1 id="intro">Of Stories<br/>and Trees</h1>
-			<div id="static" class="static"><div class="graphic"><div></div></div></div>
-		</header>
+	<body id="body" onload="page()">
+		<header id="header" style="background-image:url('style/theme.jpg');"><h1 id="intro">Of Stories<br/>and Trees</h1></header>
 		<main id="main"><!-- Document Object Model --></main>
 		<footer><ul><li><a href="https://www.alltrails.com/members/patrick-chartrand-4/maps" target="_blank">Custom maps</a></li><li><a href="mailto:patrick.chartrand@umontreal.ca">Contact</a></li></ul><h4>Patrick Chartrand &copy; 2021</h4></footer>
 		<script type="text/javascript">
