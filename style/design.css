@@ -34,13 +34,13 @@ header #init {
 header h1 {
 	position: absolute;
 	left: 0;
-	bottom: 50%;
+	bottom: 30%;
 	width: 100%;
 	letter-spacing: 5px;
 	text-transform: uppercase;
 	text-align: center;
 	font-family: "Arial";
-	font-size: "90px";
+	font-size: "100px";
 	font-weight: 400;
 	color: rgb(255, 255, 255);
 	z-index: -1;
