@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="icon" href="multimedia/icon.jpg"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald"/>
+		<style>
+			/* stylisation d'ensemble */
+			body, html {
+				height: 100%;
+				margin: 0;
+				background-color: rgb(0, 0, 0);
+			}
+			a {
+			color: rgb(255, 255, 255);
+			text-decoration: none;
+			}
+			li a:hover {
+				cursor: pointer;
+				border-bottom: 1px solid;
+			}
+			button, a {
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			}
+			/* stylisation de l'entête */
+			header {
+				height: 100%; 
+				background-image: url("multimedia/theme.jpg");
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			header div {
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.8);
+			}
+			header h1 {
+				position: absolute;
+				left: 0;
+				bottom: 30%;
+				width: 100%;
+				letter-spacing: 5px;
+				text-align: center;
+				font-size: 100px;
+				font-weight: 400;
+  				font-family: "Arial";
+				color: rgb(255, 255, 255);
+			}
+			/* stylisation du contenu principal */
+			main {
+				padding-top: 50px;
+				text-align: center;
+				background-color: rgb(0, 0, 0);
+			}
+			section {
+				display: inline-block;
+				max-width: 400px;
+				margin: 50px 20px;
+				padding: 10px;
+				font-size: 30px;
+				text-align: left;
+				background-color: rgba(255, 255, 255, 0.05);
+			}
+			@media screen and (max-width: 450px) {
+				section {
+					margin: 50px 0;
+					max-width: 275px;
+				}
+			}
+			section img {
+				width: 400px;
+			}
+			@media screen and (max-width: 450px) {
+				section img {
+					width: 275px;
+				}
+			}
+			section button {
+				border: none;
+				padding: 0;
+				font: 200 25px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);
+				background-color: inherit;
+			}
+			section h2 {
+				margin: 0;
+				font: 200 25px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);
+			}
+			section h2 span {
+				box-shadow: inset 0 -10px 0 0 #205064;
+			}
+			section h2 span:hover {
+				cursor: pointer;
+				border-bottom: solid 5px #205064;  
+			}
+			section h3, section p {
+				margin-bottom: 0;
+				font: 200 18px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);	
+			}
+			section p:after {
+				content: "...";
+			}
+			/* stylisation du pied de page */
+			footer {
+				padding: 15px 35px;
+				font: 200 18px "Helvetica Neue", Helvetica,Arial, sans-serif;
+			}
+			@media screen and (max-width: 450px) {
+				footer {
+					max-width: 275px;
+					padding: 15px;
+				}
+			}
+			footer h4 {
+				text-align: left;
+				font: 200 18px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);	
+			}
+			footer ul {
+				float: right;
+				list-style: none;
+				padding-left: 0;
+			}
+			@media screen and (max-width: 450px) {
+				footer ul {
+					float: none;
+				}
+			}
+			footer li {
+				display: inline;
+				list-style-type: none;
+				margin: 0 0 0 35px;
+			}
+			@media screen and (max-width: 450px) {
+				footer li:first-of-type {
+					margin: 0 35px 0 0;
+				}
+				footer li:last-of-type {
+					margin: 0;
+				}
+			}
+		</style>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+		<script type="text/javascript">
+			function page() {
+				// on envoie la requête XML
+				var xhr = new XMLHttpRequest();
+				xhr.onload = function() {
+					if (xhr.status === 200) {
+						var xmlDoc = xhr.responseXML;
+						var data = xmlDoc.getElementsByTagName("article");
+						var main = document.getElementById("main");
+						main.innerHTML = "";
+						// on calcul le nombre de données
+						for (var i = 0; i < data.length; i++) {
+							var section, media, x, y, title, z, date, intro;
+							section = document.createElement("section");
+							main.appendChild(section);
+							media = document.createElement("img");
+							media.setAttribute("src", "multimedia/"+data[i].getAttribute("no")+"/media.jpg");
+							section.appendChild(media);
+							x = document.createElement("form");
+							x.setAttribute("action", "article.html");
+							section.appendChild(x);
+							y = document.createElement("button");
+							y.setAttribute("name", "no");
+							y.setAttribute("value", data[i].getAttribute("no"));
+							x.appendChild(y);
+							title = document.createElement("h2");
+							section.appendChild(title);
+							y.appendChild(title);
+							z = document.createElement("span");
+							z.appendChild(document.createTextNode(getNodeValue(data[i], "title")));
+							title.appendChild(z);
+							date = document.createElement("h3");
+							date.appendChild(document.createTextNode(getNodeValue(data[i], "date")));
+							section.appendChild(date);
+							intro = document.createElement("p");
+							intro.appendChild(document.createTextNode(getNodeValue(data[i], "paragraph")));
+							section.appendChild(intro);
+						}
+						function getNodeValue(obj, tag) {
+							return obj.getElementsByTagName(tag)[0].firstChild.nodeValue;
+						}
+					}
+				};
+				// on charge le contenu du document
+				xhr.open("GET", "document/articles.xml", true);
+				xhr.send(null);
+			}
+		</script>
+	</head>
+	<body onload="page()">
+		<header><div><h1>Of Stories<br/>and Trees</h1></div></header>
+		<main id="main"><!-- Document Object Model Contents --></main>
+		<footer><ul><li><a href="https://www.alltrails.com/members/patrick-chartrand-4/maps" target="_blank">Maps</a></li><li><a href="mailto:patrick.chartrand@umontreal.ca">Contact</a></li></ul><h4>Patrick Chartrand &copy; 2021</h4></footer>
+	</body>
+</html>

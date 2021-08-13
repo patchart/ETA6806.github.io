@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="icon" href="multimedia/icon.jpg"/>
+		<style>
+			/* stylisation d'ensemble */
+			body, html {
+				height: 100%;
+				margin: 0;
+				background-color: rgb(0, 0, 0);
+			}
+			a {
+				color: rgb(255, 255, 255);
+				text-decoration: none;
+			}
+			a:hover {
+				cursor: pointer;
+				border-bottom: 1px solid;
+			}
+			/* stylisation du DOM */
+			.images:not(:first-child) {
+				display: none;
+			}
+			.button {
+				border: none;
+				background-color: inherit;
+				font: 100 75px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);
+			}
+			.button:hover {
+				cursor: pointer;
+			}
+			.button:focus {
+				outline-color: none;
+			}
+			#left {
+				cursor: pointer;
+				top: 50%;
+				width: auto;
+				padding: 16px;
+				color: rgb(255, 255, 255);
+				font-weight: bold;
+				font-size: 18px;
+				transition: 0.6s ease;
+				border-radius: 0 3px 3px 0;
+				user-select: none;				
+			}
+			#left:hover {
+				background-color: rgba(0, 0, 0, 0.8);
+			}
+			/* stylisation de l'alternative */
+			aside {
+				width: 50%;
+				margin: auto;
+				padding: 15px;
+				text-align: center;
+				font: 200 18px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);
+			}
+			aside a:first-child {
+				padding-right: 15px;
+				border-right: 1px solid rgb(250, 250, 250);
+			}
+			aside a:last-child {
+				margin-left: 14px;
+			}
+			/* stylisation de l'article */
+			article {
+				width: 50%;
+				margin: 25px auto;
+				font: 200 28px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				text-align: center;
+				color: rgb(255, 255, 255);
+			}
+			@media screen and (max-width: 450px) {
+				article {
+					width: 95%;
+					font-size: 22px;
+				}
+			}
+			article h1 {
+				text-transform: uppercase;
+				font: 100 46px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);
+			}
+			@media screen and (max-width: 450px) {
+				article h1 {
+					font-size: 40px;
+				}
+			}
+			article h2 {
+				font: 100 28px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);
+			}
+			@media screen and (max-width: 450px) {
+				article h2 {
+					font-size: 22px;
+				}
+			}
+			article p {
+				text-align: justify;
+			}
+			@media screen and (max-width: 450px) {
+				article p {
+					text-align: left;
+				}
+			}
+			article img {
+				width: 100%;
+			}
+			article ul {
+				list-style: none;
+				padding-left: 0;
+				text-align: left;
+			}
+			/* stylisation de la navigation */
+			nav {
+				width: 50%;
+				margin: auto;
+				padding: 50px;
+				text-align: center;
+			}
+			nav button {
+				padding: 0;
+				border: none;
+				font: 200 22px "Helvetica Neue", Helvetica,Arial, sans-serif;
+				color: rgb(255, 255, 255);
+				background-color: rgb(0, 0, 0);
+			}
+			nav button:hover {
+				cursor: pointer;
+				border-bottom: 1px solid;
+			}
+			nav button:focus {
+				outline-color: none;
+			}
+		</style>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+		<script type="text/javascript">
+			function page() {
+				// on prépare l'identification
+				var url, code, word;
+				url = window.location.href;
+				code = url.substr(url.length - 8);
+				word = url.substr(url.length - 11);
+				// on envoie la requête XML
+				var xhr = new XMLHttpRequest();
+				xhr.onload = function() {
+					if (xhr.status === 200) {
+						var xmlDoc = xhr.responseXML;
+						var data = xmlDoc.getElementsByTagName("article");
+						var meta = xmlDoc.getElementsByTagName("traduction");
+						var traduction = xmlDoc.getElementsByTagName("translate");
+						var text = xmlDoc.getElementsByTagName("paragraph");
+						var multimedia = xmlDoc.getElementsByTagName("image");
+						var article = document.getElementById("article");
+						article.innerHTML = "";
+						// on calcul le nombre de données
+						for (var i = 0; i < data.length; i++) {
+							// on fait une condition pour identifier les données
+							if (word == data[i].getAttribute("no")+"_fr") {
+								// on récupère les données dans les attributs et les éléments XML
+								var title, date, media, graph, metadata, length, elevation, climax, viewpoint, duration, translate, image, button;
+								var digit = word.slice(0, -3);
+								title = document.createElement("h1");
+								title.appendChild(document.createTextNode(meta[0].getAttribute("title")));
+								article.appendChild(title);
+								date = document.createElement("h2");
+								date.appendChild(document.createTextNode(meta[0].getAttribute("date")));
+								article.appendChild(date);
+								media = document.createElement("img");
+								media.setAttribute("src", "multimedia/"+digit+"/media.jpg");
+								article.appendChild(media);
+								graph = document.createElement("img");
+								graph.setAttribute("src", "multimedia/"+digit+"/graph.jpg");
+								article.appendChild(graph);
+								metadata = document.createElement("ul");
+								article.appendChild(metadata);
+								length = document.createElement("li");
+								length.innerHTML = "Distance : ";
+								length.appendChild(document.createTextNode(getNodeValue(data[i], "length")));
+								metadata.appendChild(length);
+								elevation = document.createElement("li");
+								elevation.innerHTML = "Dénivelé positif : ";
+								elevation.appendChild(document.createTextNode(getNodeValue(data[i], "elevation")));
+								metadata.appendChild(elevation);	
+								climax = document.createElement("li");
+								climax.innerHTML = "Sommet : ";
+								climax.appendChild(document.createTextNode(getNodeValue(data[i], "climax")));
+								metadata.appendChild(climax);
+								viewpoint = document.createElement("li");
+								viewpoint.innerHTML = "Point de vue : ";
+								viewpoint.appendChild(document.createTextNode(getNodeValue(data[i], "viewpoint")));
+								metadata.appendChild(viewpoint);
+								duration = document.createElement("li");
+								duration.innerHTML = "Durée : ";
+								duration.appendChild(document.createTextNode(meta[0].getAttribute("time")));
+								metadata.appendChild(duration);
+								var x = "", j;
+								for (var j = 0; j < traduction.length; j++) {
+  									x += "<p>"+traduction[j].textContent+"</p>";
+								}
+								translate = document.createElement("div");
+								translate.innerHTML = x;
+								article.appendChild(translate);
+								var y = "", k;
+								for (k = 0; k < multimedia.length; k++) {
+  									y += "<img class='images' src='multimedia/"+digit+"/image-"+multimedia[k].getAttribute("status")+".jpg'/>";
+								}
+								image = document.createElement("div");
+								image.innerHTML = y;
+								article.appendChild(image);
+								button = document.createElement("button");
+								button.setAttribute("onclick", "slide(1)");
+								button.setAttribute("class", "button");
+								button.innerHTML = "&#10227;";
+								article.appendChild(button);
+							} else if (code == data[i].getAttribute("no")) {
+								// on récupère les données dans les attributs et les éléments XML
+								var title, date, media, graph, metadata, length, climax, viewpoint, duration, paragraph, image, button;
+								title = document.createElement("h1");
+								title.appendChild(document.createTextNode(getNodeValue(data[i], "title")));
+								article.appendChild(title);
+								date = document.createElement("h2");
+								date.appendChild(document.createTextNode(getNodeValue(data[i], "date")));
+								article.appendChild(date);
+								media = document.createElement("img");
+								media.setAttribute("src", "multimedia/"+code+"/media.jpg");
+								article.appendChild(media);
+								graph = document.createElement("img");
+								graph.setAttribute("src", "multimedia/"+code+"/graph.jpg");
+								article.appendChild(graph);
+								metadata = document.createElement("ul");
+								article.appendChild(metadata);
+								length = document.createElement("li");
+								length.innerHTML = "Length: ";
+								length.appendChild(document.createTextNode(getNodeValue(data[i], "length")));
+								metadata.appendChild(length);
+								elevation = document.createElement("li");
+								elevation.innerHTML = "Elevation gain : ";
+								elevation.appendChild(document.createTextNode(getNodeValue(data[i], "elevation")));
+								metadata.appendChild(elevation);
+								climax = document.createElement("li");
+								climax.innerHTML = "Climax: ";
+								climax.appendChild(document.createTextNode(getNodeValue(data[i], "climax")));
+								metadata.appendChild(climax);
+								viewpoint = document.createElement("li");
+								viewpoint.innerHTML = "Viewpoint: ";
+								viewpoint.appendChild(document.createTextNode(getNodeValue(data[i], "viewpoint")));
+								metadata.appendChild(viewpoint);
+								duration = document.createElement("li");
+								duration.innerHTML = "Duration: ";
+								duration.appendChild(document.createTextNode(getNodeValue(data[i], "duration")));
+								metadata.appendChild(duration);
+								var x = "", j;
+								for (var j = 0; j < text.length; j++) {
+  									x += "<p>"+text[j].textContent+"</p>";
+								}
+								paragraph = document.createElement("div");
+								paragraph.innerHTML = x;
+								article.appendChild(paragraph);
+								var y = "", k;
+								for (k = 0; k < multimedia.length; k++) {
+  									y += "<img class='images' src='multimedia/"+code+"/image-"+multimedia[k].getAttribute("status")+".jpg'/>";
+								}
+								image = document.createElement("div");
+								image.innerHTML = y;
+								article.appendChild(image);
+								var test = document.createElement("a");
+								test.setAttribute("id", "left");
+								test.setAttribute("onclick", "plusSlides(-1)");
+								test.innerHTML = "&#10094;";
+								image.appendChild(test);
+								button = document.createElement("button");
+								button.setAttribute("onclick", "slide(1)");
+								button.setAttribute("class", "button");
+								button.innerHTML = "&#10227;";
+								article.appendChild(button);
+							}
+						}
+						function getNodeValue(obj, tag) {
+							return obj.getElementsByTagName(tag)[0].firstChild.nodeValue;
+						}
+					}
+				};
+				// on charge le contenu du document
+				xhr.open("GET", "document/articles.xml", true);
+				xhr.send(null);
+				// on dirige vers la traduction française
+				var x;
+				x = url.substr(url.length - 2);
+				var y = url.slice(0, -3);
+				var z = y.substr(y.length - 8);
+				if (x == "fr") {
+					var en = document.getElementById("en");
+					en.setAttribute("href", "https://ofstoriesandtrees.github.io/index/article.html?no="+z);
+					en.setAttribute("onclick", ".");
+					var fr = document.getElementById("fr");
+					fr.setAttribute("href", "https://ofstoriesandtrees.github.io/index/article.html?no="+z+"_fr");
+					fr.setAttribute("onclick", ".");
+				} else {
+					var en = document.getElementById("en");
+					en.setAttribute("href", "https://ofstoriesandtrees.github.io/index/article.html?no="+code);
+					en.setAttribute("onclick", ".");
+					var fr = document.getElementById("fr");
+					fr.setAttribute("href", "https://ofstoriesandtrees.github.io/index/article.html?no="+code+"_fr");
+					fr.setAttribute("onclick", ".");
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			// on programme le montage multimédia
+			var index = 1;
+			show(index);
+			function slide(n) {
+				show(index += n);
+			}
+			function show(n) {
+				var i;
+				var x = document.getElementsByClassName("images");
+				if (n > x.length) {index = 1}
+				if (n < 1) {index = x.length}
+				for (i = 0; i < x.length; i++) {
+					x[i].style.display = "none";
+				}
+				x[index-1].style.display = "block";
+			}
+		</script>
+	</head>
+	<body onload="page()">
+		<aside><a id="en">en</a><a id="fr">fr</a></aside>
+		<article id="article"><!-- Document Object Model Contents --></article>
+		<nav><button onClick="location.href='https://ofstoriesandtrees.github.io/index/main.html'">home</button></nav>	
+	</body>
+</html>
