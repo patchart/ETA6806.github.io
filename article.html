@@ -108,7 +108,7 @@
 					if (xhr.status === 200) {
 						var xmlDoc = xhr.responseXML;
 						var data = xmlDoc.getElementsByTagName("article");
-						var text = xmlDoc.getElementsByTagName("semantic");
+						var text = xmlDoc.getElementsByTagName("indent");
 						var citation = xmlDoc.getElementsByTagName("quote");
 						var multimedia = xmlDoc.getElementsByTagName("image");
 						var article = document.getElementById("article");
