@@ -184,7 +184,7 @@
 						main.innerHTML = "";
 						// on calcul le nombre de données
 						for (var i = 0; i < data.length; i++) {
-							var section, media, x, y, title, z, date, intro;
+							var section, media, x, y, title, date, preambule, z;
 							section = document.createElement("section");
 							main.appendChild(section);
 							media = document.createElement("img");
@@ -200,15 +200,14 @@
 							title = document.createElement("h3");
 							section.appendChild(title);
 							y.appendChild(title);
-							z = document.createElement("span");
-							z.appendChild(document.createTextNode(getNodeValue(data[i], "title")));
-							title.appendChild(z);
 							date = document.createElement("h4");
 							date.appendChild(document.createTextNode(getNodeValue(data[i], "date")));
 							section.appendChild(date);
-							intro = document.createElement("p");
-							intro.appendChild(document.createTextNode(getNodeValue(data[i], "paragraph")));
-							section.appendChild(intro);
+							preambule = document.createElement("p");
+							preambule.appendChild(document.createTextNode(getNodeValue(data[i], "paragraph")));
+							section.appendChild(preambule);
+							z = document.createElement("hr");
+							section.appendChild(z);
 						}
 						function getNodeValue(obj, tag) {
 							return obj.getElementsByTagName(tag)[0].firstChild.nodeValue;
