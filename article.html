@@ -101,6 +101,7 @@
 						var xmlDoc = xhr.responseXML;
 						var data = xmlDoc.getElementsByTagName("article");
 						var text = xmlDoc.getElementsByTagName("paragraph");
+						var citation = xmlDoc.getElementsByTagName("quote");
 						var multimedia = xmlDoc.getElementsByTagName("image");
 						var article = document.getElementById("article");
 						article.innerHTML = "";
@@ -109,7 +110,7 @@
 							// on fait une condition pour identifier les données
 							if (code == data[i].getAttribute("no")) {
 								// on récupère les données dans les attributs et les éléments XML
-								var title, date, media, graph, metadata, localisation, length, elevation, climax, viewpoint, duration, paragraph, image, button;
+								var title, date, media, graph, metadata, localisation, length, elevation, climax, viewpoint, duration, paragraph, quote, button;
 								title = document.createElement("h1");
 								title.appendChild(document.createTextNode(getNodeValue(data[i], "title")));
 								article.appendChild(title);
@@ -155,13 +156,21 @@
 								paragraph = document.createElement("div");
 								paragraph.innerHTML = x;
 								article.appendChild(paragraph);
+								
 								var y = "", k;
+								for (k = 0; k < quote.length; k++) {
+  									y += "<q>"+quote[k].textContent+"</q>";
+								}
+								quote = document.createElement("div");
+								quote.innerHTML = y;
+								article.appendChild(quote);
+								/*var y = "", k;
 								for (k = 0; k < multimedia.length; k++) {
   									y += "<img class='images' src='multimedia/"+code+"/image-"+multimedia[k].getAttribute("status")+".jpg'/>";
 								}
 								image = document.createElement("div");
 								image.innerHTML = y;
-								article.appendChild(image);
+								article.appendChild(image);*/
 								var test = document.createElement("a");
 								test.setAttribute("id", "left");
 								test.setAttribute("onclick", "plusSlides(-1)");
