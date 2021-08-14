@@ -128,7 +128,7 @@
 								localisation.appendChild(document.createTextNode(getNodeValue(data[i], "localisation")));
 								metadata.appendChild(localisation);
 								length = document.createElement("li");
-								length.innerHTML = ", #;
+								length.innerHTML = ", #";
 								length.appendChild(document.createTextNode(getNodeValue(data[i], "length")));
 								metadata.appendChild(length);
 								elevation = document.createElement("li");
@@ -140,7 +140,7 @@
 								climax.appendChild(document.createTextNode(getNodeValue(data[i], "climax")));
 								metadata.appendChild(climax);
 								viewpoint = document.createElement("li");
-								viewpoint.innerHTML = "V, #";
+								viewpoint.innerHTML = ", #";
 								viewpoint.appendChild(document.createTextNode(getNodeValue(data[i], "viewpoint")));
 								metadata.appendChild(viewpoint);
 								duration = document.createElement("li");
