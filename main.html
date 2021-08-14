@@ -103,45 +103,42 @@
 					width: 100%;
 				}
 			}
-			section {
+			article {
 				display: block;
 				margin: 50px auto;
 				text-align: center;
 			}
-			section img {
+			article img {
 				width: 80%;
 			}
 			@media screen and (max-width: 450px) {
-				section img {
+				article img {
 					width: 275px;
 				}
 			}
-			section button {
+			article button {
 				border: none;
 				padding: 0;
 				margin-bottom: -15px;
 				background-color: transparent;
 			}
-			section button:hover {
+			article button:hover {
 				cursor: pointer;
 			}
-			section h3 {
+			article h3 {
 				font-family: "serif";
 				font-weight: bold;
 				font-size: 20px;
 				color: rgb(52, 52, 52);
  				/*text-decoration: underline;*/
 			}
-			/*section h3:hover {
- 				text-decoration: none;
-			}*/
-			section h4 {
+			article h4 {
 				text-transform: uppercase;
 				font-weight: 100;
 				font-size: 15px;
 				color: rgb(169, 169, 169);
 			}
-			section p {
+			article p {
 				line-height: 30px;
 				word-spacing: 4px;
 				text-align: left;
@@ -150,12 +147,12 @@
 				color: rgb(56, 56, 56);
 			}
 			@media screen and (max-width: 450px) {
-				section p {
+				article p {
 					margin-left: 10px;
 					margin-right: 10px;
 				}
 			}
-			section q {
+			article q {
 				display: block;
 				font-weight: 100;
 				font-size: 17px;
@@ -166,7 +163,7 @@
 				padding-right: 40px;
 			}
 			@media screen and (max-width: 450px) {
-				section hr {
+				article hr {
 					width: 90%;
 				}
 			}
@@ -198,19 +195,19 @@
 						var xmlDoc = xhr.responseXML;
 						var text = xmlDoc.getElementsByTagName("indent");
 						var data = xmlDoc.getElementsByTagName("article");
-						var main = document.getElementById("main");
+						var main = document.getElementById("articles");
 						main.innerHTML = "";
 						// on calcul le nombre de données
 						for (var i = 0; i < data.length; i++) {
-							var section, media, x, y, title, date, indentation, z, line;
-							section = document.createElement("section");
-							main.appendChild(section);
+							var article, media, x, y, title, date, indentation, z, line;
+							article = document.createElement("section");
+							main.appendChild(article);
 							media = document.createElement("img");
 							media.setAttribute("src", "multimedia/"+data[i].getAttribute("no")+"/media.jpg");
-							section.appendChild(media);
+							article.appendChild(media);
 							x = document.createElement("form");
 							x.setAttribute("action", "article.html");
-							section.appendChild(x);
+							article.appendChild(x);
 							y = document.createElement("button");
 							y.setAttribute("name", "no");
 							y.setAttribute("value", data[i].getAttribute("no"));
@@ -220,10 +217,7 @@
 							y.appendChild(title);
 							date = document.createElement("h4");
 							date.appendChild(document.createTextNode(getNodeValue(data[i], "date")));
-							section.appendChild(date);
-							/*preambule = document.createElement("p");
-							preambule.appendChild(document.createTextNode(getNodeValue(data[i], "paragraph")));
-							section.appendChild(preambule);*/
+							article.appendChild(date);
 							var z = "", j;
 							for (var j = 0; j < text.length; j++) {
   								/*x += "<p>"+text[j].textContent+"</p>";*/
@@ -231,9 +225,9 @@
 							}
 							indentation = document.createElement("div");
 							indentation.innerHTML = z;
-							section.appendChild(indentation);
+							article.appendChild(indentation);
 							line = document.createElement("hr");
-							section.appendChild(line);
+							article.appendChild(line);
 						}
 						function getNodeValue(obj, tag) {
 							return obj.getElementsByTagName(tag)[0].firstChild.nodeValue;
@@ -247,8 +241,8 @@
 		</script>
 	</head>
 	<body onload="page()">
-		<header><div><h1>Of Stories<br/>and Trees</h1><h2>A search of wisdom and discernment</h2><ul><li onclick="window.location.href='#main';">blog</li><li onclick="window.location.href='https://www.alltrails.com/members/patrick-chartrand-4/maps';">custom maps</li></ul></div></header>
-		<main id="main"><!-- Document Object Model Contents --></main>
+		<header><div><h1>Of Stories<br/>and Trees</h1><h2>In search of wisdom and discernment</h2><ul><li onclick="window.location.href='#main';">blog</li><li onclick="window.location.href='https://www.alltrails.com/members/patrick-chartrand-4/maps';">custom maps</li></ul></div></header>
+		<main id="articles"><!-- Document Object Model Contents --></main>
 		<footer><h5><a href="mailto:patrick.chartrand@umontreal.ca">Patrick Chartrand</a> &copy; 2021</h5></footer>
 	</body>
 </html>
