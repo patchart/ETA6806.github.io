@@ -108,7 +108,7 @@
 					if (xhr.status === 200) {
 						var xmlDoc = xhr.responseXML;
 						var data = xmlDoc.getElementsByTagName("article");
-						var text = xmlDoc.getElementsByTagName("paragraph");
+						var text = xmlDoc.getElementsByTagName("semantic");
 						var citation = xmlDoc.getElementsByTagName("quote");
 						var multimedia = xmlDoc.getElementsByTagName("image");
 						var article = document.getElementById("article");
@@ -118,7 +118,7 @@
 							// on fait une condition pour identifier les données
 							if (code == data[i].getAttribute("no")) {
 								// on récupère les données dans les attributs et les éléments XML
-								var title, date, media, graph, metadata, localisation, length, elevation, climax, viewpoint, duration, paragraph, quote, button;
+								var title, date, media, graph, metadata, localisation, length, elevation, climax, viewpoint, duration, indentation, quote, button;
 								title = document.createElement("h1");
 								title.appendChild(document.createTextNode(getNodeValue(data[i], "title")));
 								article.appendChild(title);
@@ -160,11 +160,11 @@
 								var x = "", j;
 								for (var j = 0; j < text.length; j++) {
   									/*x += "<p>"+text[j].textContent+"</p>";*/
-									x += "<"+text[j].getAttribute("type")+">"+text[j].textContent+"</"+text[j].getAttribute("type")+">";
+									x += "<"+text[j].getAttribute("semantic")+">"+text[j].textContent+"</"+text[j].getAttribute("semantic")+">";
 								}
-								paragraph = document.createElement("div");
-								paragraph.innerHTML = x;
-								article.appendChild(paragraph);
+								indentation = document.createElement("div");
+								indentation.innerHTML = x;
+								article.appendChild(indentation);
 								
 								var y = "", k;
 								for (k = 0; k < citation.length; k++) {
