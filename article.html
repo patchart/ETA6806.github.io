@@ -20,10 +20,7 @@
 			/* stylisation de l'article */
 			article {
 				width: 50%;
-				margin: 25px auto;
-				font-weight: 100;
-				font-size: 16px;
-				font-family: "Georgia";
+				margin: 50px auto;
 				text-align: center;
 				color: rgb(0, 0, 0);
 			}
@@ -35,13 +32,13 @@
 			}
 			article h1 {
 				font-weight: 100;
-				font-size: 26px;
+				font-size: 22px;
 				font-family: "Georgia";
 				color: rgb(0, 0, 0);
 			}
 			article h2 {
 				font-weight: 100;
-				font-size: 22px;
+				font-size: 18px;
 				font-family: "Georgia";
 				color: rgb(0, 0, 0);
 			}
@@ -59,6 +56,9 @@
 				list-style: none;
 				padding-left: 0;
 				text-align: left;
+			}
+			article li {
+				display: inline;
 			}
 			/* stylisation de la navigation */
 			nav {
@@ -124,27 +124,27 @@
 								metadata = document.createElement("ul");
 								article.appendChild(metadata);
 								localisation = document.createElement("li");
-								localisation.innerHTML = "Localisation: ";
+								localisation.innerHTML = "#";
 								localisation.appendChild(document.createTextNode(getNodeValue(data[i], "localisation")));
 								metadata.appendChild(localisation);
 								length = document.createElement("li");
-								length.innerHTML = "Length: ";
+								length.innerHTML = ", #;
 								length.appendChild(document.createTextNode(getNodeValue(data[i], "length")));
 								metadata.appendChild(length);
 								elevation = document.createElement("li");
-								elevation.innerHTML = "Elevation gain : ";
+								elevation.innerHTML = ", #";
 								elevation.appendChild(document.createTextNode(getNodeValue(data[i], "elevation")));
 								metadata.appendChild(elevation);
 								climax = document.createElement("li");
-								climax.innerHTML = "Climax: ";
+								climax.innerHTML = ", #";
 								climax.appendChild(document.createTextNode(getNodeValue(data[i], "climax")));
 								metadata.appendChild(climax);
 								viewpoint = document.createElement("li");
-								viewpoint.innerHTML = "Viewpoint: ";
+								viewpoint.innerHTML = "V, #";
 								viewpoint.appendChild(document.createTextNode(getNodeValue(data[i], "viewpoint")));
 								metadata.appendChild(viewpoint);
 								duration = document.createElement("li");
-								duration.innerHTML = "Duration: ";
+								duration.innerHTML = ", #";
 								duration.appendChild(document.createTextNode(getNodeValue(data[i], "duration")));
 								metadata.appendChild(duration);
 								var x = "", j;
