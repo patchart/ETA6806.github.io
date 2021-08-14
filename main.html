@@ -126,15 +126,15 @@
 			section button:hover {
 				cursor: pointer;
 			}
-			section h2 {
+			section h3 {
 				font-weight: 100;
 				font-size: 20px;
  				text-decoration: underline;
 			}
-			section h2:hover {
+			section h3:hover {
  				text-decoration: none;
 			}
-			section h3 {
+			section h4 {
 				font-weight: 100;
 				font-size: 16px;
 				color: rgb(169, 169, 169);
@@ -197,13 +197,13 @@
 							y.setAttribute("name", "no");
 							y.setAttribute("value", data[i].getAttribute("no"));
 							x.appendChild(y);
-							title = document.createElement("h2");
+							title = document.createElement("h3");
 							section.appendChild(title);
 							y.appendChild(title);
 							z = document.createElement("span");
 							z.appendChild(document.createTextNode(getNodeValue(data[i], "title")));
 							title.appendChild(z);
-							date = document.createElement("h3");
+							date = document.createElement("h4");
 							date.appendChild(document.createTextNode(getNodeValue(data[i], "date")));
 							section.appendChild(date);
 							intro = document.createElement("p");
