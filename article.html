@@ -159,7 +159,8 @@
 								metadata.appendChild(duration);
 								var x = "", j;
 								for (var j = 0; j < text.length; j++) {
-  									x += "<p>"+text[j].textContent+"</p>";
+  									/*x += "<p>"+text[j].textContent+"</p>";*/
+									x += "<"+text[j].getAttribute("type")+">"+text[j].textContent+"</"+text[j].getAttribute("type")+">";
 								}
 								paragraph = document.createElement("div");
 								paragraph.innerHTML = x;
