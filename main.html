@@ -195,23 +195,24 @@
 						var xmlDoc = xhr.responseXML;
 						var text = xmlDoc.getElementsByTagName("indent");
 						var data = xmlDoc.getElementsByTagName("article");
-						var main = document.getElementById("articles");
-						main.innerHTML = "";
+						var metadata = document.getElementById("articles");
+						metadata.innerHTML = "";
 						// on calcul le nombre de données
 						for (var i = 0; i < data.length; i++) {
 							var article, media, x, y, title, date, indentation, z, line;
 							article = document.createElement("section");
-							main.appendChild(article);
+							metadata.appendChild(article);
 							media = document.createElement("img");
 							media.setAttribute("src", "multimedia/"+data[i].getAttribute("no")+"/media.jpg");
 							article.appendChild(media);
-							x = document.createElement("form");
-							x.setAttribute("action", "article.html");
-							article.appendChild(x);
+							//x = document.createElement("form");
+							//x.setAttribute("action", "article.html");
+							//article.appendChild(x);
 							y = document.createElement("button");
 							y.setAttribute("name", "no");
 							y.setAttribute("value", data[i].getAttribute("no"));
-							x.appendChild(y);
+							article.appendChild(y);
+							//x.appendChild(y);
 							title = document.createElement("h3");
 							title.appendChild(document.createTextNode(getNodeValue(data[i], "title")));
 							y.appendChild(title);
