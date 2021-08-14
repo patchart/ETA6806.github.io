@@ -198,7 +198,7 @@
 							y.setAttribute("value", data[i].getAttribute("no"));
 							x.appendChild(y);
 							title = document.createElement("h3");
-							section.appendChild(title);
+							title.appendChild(document.createTextNode(getNodeValue(data[i], "title")));
 							y.appendChild(title);
 							date = document.createElement("h4");
 							date.appendChild(document.createTextNode(getNodeValue(data[i], "date")));
