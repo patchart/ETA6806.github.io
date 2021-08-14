@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <articles>
-    <article no="08052021">
+    <article no="05082021">
         <title>Life never goes as planned</title>
         <date>May 08, 2021</date>
-        <metadata>
-            <localisation>Stoke Mountains</localisation>
-            <length>18,97 km</length>
-            <elevation>890 m</elevation>
-            <climax>653 m</climax>
-            <viewpoint>180&#176;</viewpoint>
-            <duration>6.30</duration>
-        </metadata>
         <text>
             <indent semantic="p">I went on the border trails, around Mount Gosford, which I found on All Trails. I had never been to hike in Maine or near this mountain range. 
             It's nice because you can do a loop from where you park your car, without needing a reservation. I thought it would be easy to do: the map on 
@@ -19,7 +11,7 @@
             detail. However, it was a beautiful trip with lots of wildlife and views. There is a small cliff called Cap-Frontière where there is a magnificent 
             view of Maine with mountains, lakes and flowers like I have never seen in Quebec. The unexpectedness of this hike, i.e. the landscape and distance, make it a 
             little bit hard and disappointing of myself, because my organisation and planning was maybe not so good in the end. Then, I remembered a book of my favorite French 
-            author and explorer, Sylvain Tesson, about the importance of “s’abandonner à vivre”.</indent>
+            author and explorer, Sylvain Tesson, about the importance of “s'abandonner à vivre”.</indent>
             <indent semantic="q">Il est rare en voyage de vivre des jours conformes aux idées que l’on s’étaient forgées avant les grands départs.</indent>
             <indent semantic="p">And that is life. Things almost never goes according to the plan whether traveling or in everyday life, and I think we should accept it by 
             changing our perspective on the course of things. Maybe we have impossible standards or we are looking for answers to unsolvable problems. In fact, 
@@ -27,15 +19,5 @@
             and welcoming them as they come. But, it requires space because the more we restreint ourselves in expectations and rules, the less flexibility and curiosity 
             you end up having towards the messiness of life. Each new experience is an opportunity to discover something new about ourselves or about the world.</indent>
         </text>
-        <multimedia>
-            <image status="1"/>
-            <image status="2"/>
-            <image status="3"/>
-            <image status="4"/>
-            <image status="5"/>
-            <image status="6"/>
-            <image status="7"/>
-            <image status="8"/>
-        </multimedia>
     </article>
 </articles>
