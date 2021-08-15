@@ -30,7 +30,7 @@ header h1 {
 	font-weight: 500;
 	color: rgb(255, 255, 255);
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 	header h1 {
 		bottom: 40%;
 		font-size: 60px;
@@ -68,7 +68,7 @@ header ul {
 	text-align: center;
 	list-style: none;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 	header ul {
 		bottom: 15%;
 	}
@@ -103,7 +103,7 @@ main {
 	margin: auto;
 	font-family: "serif";
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 	main {
 		width: 80%;
 	}
@@ -157,8 +157,8 @@ article p {
 }
 @media screen and (max-width: 450px) {
 	article p {
-		margin-left: 10px;
-		margin-right: 10px;
+		margin-left: 15px;
+		margin-right: 15px;
 	}
 }
 article q {
