@@ -10,7 +10,7 @@ button, a {
 /* stylisation de l'entête */
 header {
 	height: 100%; 
-	background-image: url("media.jpg");
+	background-image: url("art.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
