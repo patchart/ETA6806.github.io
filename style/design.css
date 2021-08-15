@@ -32,7 +32,7 @@ header h1 {
 }
 @media screen and (max-width: 700px) {
 	header h1 {
-		bottom: 40%;
+		bottom: 35%;
 		font-size: 60px;
 	}
 }
@@ -58,6 +58,11 @@ header h2 {
 		bottom: 38%;
 	}
 }
+@media screen and (max-width: 700px) {
+	header h2 {
+		bottom: 5%;
+	}
+}
 header ul {
 	position: absolute;
 	left: 0;
@@ -70,7 +75,7 @@ header ul {
 }
 @media screen and (max-width: 700px) {
 	header ul {
-		bottom: 15%;
+		bottom: 10%;
 	}
 }
 @media screen and (max-width: 450px) {
