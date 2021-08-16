@@ -137,9 +137,6 @@ article button {
 	margin-bottom: -15px;
 	background-color: transparent;
 }
-article button:hover {
-	cursor: pointer;
-}
 article h3 {
 	font-family: "serif";
 	font-weight: bold;
