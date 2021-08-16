@@ -201,5 +201,5 @@ footer a {
 	text-decoration: none;
 }
 footer a:hover {
-	text-transform: underline;
+	text-decoration: underline;
 }
